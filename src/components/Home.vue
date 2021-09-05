@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <p>
-      sdfs
-    </p>
+    <div class="home_center">
+        <p>高凌峰</p>
+    </div>
   </div>
 </template>
 
