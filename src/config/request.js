@@ -1,6 +1,6 @@
 // 当前环境
 const environment = process.env['NODE_ENV']
-const userServiceName = '/user'
+const userServiceName = '/user-service'
 const orderServiceName = '/order'
 const productServiceName = '/product'
 
