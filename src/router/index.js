@@ -19,7 +19,7 @@ export default new Router({
     },
     {
       path: '/githubLogin',
-      component: () => import(/* webpackChunkName: "dashboard" */ '../components/HelloWorld'),
+      component: () => import(/* webpackChunkName: "dashboard" */ '../moudules/login/views/GithubLogin'),
       meta: {title: '系统首页'}
     },
   ],
