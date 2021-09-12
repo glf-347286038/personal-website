@@ -1,29 +1,28 @@
 <template>
   <div class="home">
     <div class="home_center">
-      <p>高凌峰</p>
-      <a href="https://github.com/login/oauth/authorize?client_id=13112e32b406a71b053a&state=gao">
-        登录
-      </a>
-      <div class="github-btn">
-        <button @click="githubLogin">github登录</button>
-      </div>
-
+      <p>开发者-高凌峰</p>
+      <el-button type="success" @click="githubLogin" plain v-model=data.userInfo.userName>
+        {{data.userInfo.userName}}
+      </el-button>
     </div>
   </div>
 </template>
 
 <script>
   import GithubLogin from '../../login/views/GithubLogin'
+  import {getItem} from '../../../utils/storage'
 
   export default {
     name: 'Home',
 
     data: function () {
       return {
-        param: {
-          githubUrl: 'https://github.com/login/oauth/authorize?client_id=13112e32b406a71b053a&state=gao'
-        },
+        data: {
+          userInfo: {
+            userName: ''
+          }
+        }
       }
 
     },
@@ -33,9 +32,17 @@
        * github认证登录
        */
       githubLogin () {
+        console.log('开始')
         GithubLogin.methods.githubLogin()
       }
 
+    },
+    created () {
+      if (getItem('userName') !== null) {
+        this.data.userInfo.userName = getItem('userName') + ',欢迎登录'
+      } else {
+        this.data.userInfo.userName = 'github登录'
+      }
     },
 
   }

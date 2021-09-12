@@ -9,13 +9,24 @@
 
   import {githubLogin, publicUrl} from '../../../config/request'
   import {getUrlParam} from '../../../utils/getUrlParam'
-
   export default {
     name: 'GithubLoginLoading',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
         loading: true, // 等待登录成功
+        data: {
+          userInfo: {
+            accessToken: '',
+            account: '',
+            bio: '',
+            id: '',
+            name: '',
+            nationality: '',
+            location: ''
+          }
+        }
+
       }
     },
 
@@ -32,9 +43,19 @@
             code: code
           },
         }).then(res => {
-          console.log(res.data)
+          const result = res.data.data
+          console.log('用户信息:' + result)
+          console.log(result.name)
           this.loading = false
-          this.$message.success('github登录成功')
+          localStorage.setItem('userName', result.name)
+          localStorage.setItem('accessToken', result.accessToken)
+          this.$message.success(result.account + 'github登录成功')
+          this.$router.replace('/home')
+          this.$router.back()
+        }).catch(error => {
+          this.loading = false
+          this.$message.error('github网络异常,请重新登录!' + error)
+          this.$router.replace('/home')
         })
       },
 
@@ -42,6 +63,7 @@
        * github认证登录
        */
       githubLogin () {
+        console.log("sss")
         const authorization_uri = `${githubLogin.authorization_uri}`
         const client_id = `${githubLogin.client_id}`
         const authorization_callback_url = `${githubLogin.authorization_callback_url}`
@@ -63,7 +85,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .githubLoginLoading {
-    width: 1000px;
-    height: 1000px;
+    width: 100%;
+    height: 100%;
   }
 </style>
