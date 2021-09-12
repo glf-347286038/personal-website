@@ -9,6 +9,7 @@
 
   import {githubLogin, publicUrl} from '../../../config/request'
   import {getUrlParam} from '../../../utils/getUrlParam'
+
   export default {
     name: 'GithubLoginLoading',
     data () {
@@ -49,13 +50,12 @@
           this.loading = false
           localStorage.setItem('userName', result.name)
           localStorage.setItem('accessToken', result.accessToken)
-          this.$message.success(result.account + 'github登录成功')
-          this.$router.replace('/home')
+          // this.$router.replace('/home')
           this.$router.back()
         }).catch(error => {
           this.loading = false
+          this.$router.back()
           this.$message.error('github网络异常,请重新登录!' + error)
-          this.$router.replace('/home')
         })
       },
 

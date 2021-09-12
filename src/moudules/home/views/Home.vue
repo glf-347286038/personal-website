@@ -39,6 +39,11 @@
     },
     created () {
       if (getItem('userName') !== null) {
+        this.$message({
+          message: this.data.userInfo.userName + 'github已经登录成功',
+          type: 'success',
+          duration: 2000
+        })
         this.data.userInfo.userName = getItem('userName') + ',欢迎登录'
       } else {
         this.data.userInfo.userName = 'github登录'
