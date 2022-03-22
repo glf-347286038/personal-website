@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../moudules/home/views/Home'
+import Index from '../moudules/index/views/index'
 
 Vue.use(Router)
 
@@ -8,19 +8,24 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home',
-      name: 'home',
-      component: Home
+      redirect: '/index',
+      name: 'index',
+      component: Index
     },
     {
-      path: '/home',
-      component: () => import(/* webpackChunkName: "dashboard" */ '../moudules/home/views/Home'),
+      path: '/index',
+      component: () => import(/* webpackChunkName: "dashboard" */ '../moudules/index/views/index'),
       meta: {title: '系统首页'}
     },
     {
-      path: '/githubLogin',
-      component: () => import(/* webpackChunkName: "dashboard" */ '../moudules/login/views/GithubLogin'),
+      path: '/login',
+      component: () => import(/* webpackChunkName: "dashboard" */ '../moudules/login/views/Login'),
       meta: {title: '系统首页'}
+    },
+    {
+      path: '/callback',
+      component: () => import('../moudules/login/views/Callback'),
+      meta: {title: '回调页面'}
     },
   ],
   mode: 'history'

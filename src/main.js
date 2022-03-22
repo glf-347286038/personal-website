@@ -12,6 +12,9 @@ Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+// 开启debug模式
+Vue.config.debug = true
+Vue.prototype.$baseUrl = process.env.baseUrl
 
 /* eslint-disable no-new */
 new Vue({
@@ -22,14 +25,14 @@ new Vue({
 })
 
 //使用钩子函数对路由进行权限跳转
-router.beforeEach((to, from, next) => {
-  console.log('当前路径' + to.path)
-  //标题修改
-  // document.title = `${to.meta.title} | 秒杀商城`;
-  // const token = localStorage.getItem('token');
-  // if(!token && to.path !== '/login'){
-  //   next('/login');
-  // }else{
-  //   next();
-  // }
-});
+// router.beforeEach((to, from, next) => {
+//   console.log('当前路径' + to.path)
+//   //标题修改
+//   // document.title = `${to.meta.title} | 秒杀商城`;
+//   // const token = localStorage.getItem('token');
+//   // if(!token && to.path !== '/login'){
+//   //   next('/login');
+//   // }else{
+//   //   next();
+//   // }
+// });
